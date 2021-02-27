@@ -15,7 +15,7 @@ executables = [cx_Freeze.Executable("pastepad.py", base=base, icon="icon.ico")]
 cx_Freeze.setup(
     name = "PastePad Text Editor",
     options = {"build_exe": {"packages":["tkinter","os","webbrowser","datetime"], "include_files":["icon.ico",'tcl86t.dll','tk86t.dll', 'icons2']}},
-    version = "0.01",
+    version = "0.08",
     description = "PastePad Text Editor",
     executables = executables
     )
