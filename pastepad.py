@@ -1,9 +1,13 @@
 #PastePad Is Created By Abhimanyu Sharma A.K.A N1nja0p
 import tkinter as tk
 from tkinter import ttk
-from tkinter import font,colorchooser,filedialog,messagebox
+from tkinter import font
+from tkinter import colorchooser
+from tkinter import filedialog
+from tkinter import messagebox
 import os
 import webbrowser
+import datetime
 main_application=tk.Tk()
 main_application.geometry("1200x800")
 main_application.title("PastePad Text Editor")
@@ -11,10 +15,10 @@ main_application.wm_iconbitmap("icon.ico")
 #########################main menu##########################
 main_menu=tk.Menu()
 ##file menu
-new_icon=tk.PhotoImage(file='icons2/new.png')
 open_icon=tk.PhotoImage(file='icons2/open.png')
 save_icon=tk.PhotoImage(file='icons2/save.png')
 save_as_icon=tk.PhotoImage(file='icons2/save_as.png')
+new_icon=tk.PhotoImage(file='icons2/new.png')
 exit_icon=tk.PhotoImage(file='icons2/exit.png')
 file=tk.Menu(main_menu,tearoff=False)
 #####edit 
@@ -49,6 +53,14 @@ color_dict={
 ##about
 def open_web(event=None):
     webbrowser.open("https://github.com/N1nja0p/PastePad-Text-Editor")
+def getDateTime(event=None):
+    dt=datetime.datetime.now().strftime("%H:%M:%S")
+    dt2=datetime.datetime.today()
+    dt2=datetime.datetime(dt2.year,dt2.month,dt2.day)
+    text_content=str(dt)+" "+"PM"+" "+str(dt2)
+    text_editor.tag_config('left',justify=tk.LEFT)
+    text_editor.insert(tk.INSERT,text_content[:22],'left')
+timeImage=tk.PhotoImage(file="icons2/time2.png")
 about=tk.Menu(main_menu,tearoff=False)
 about.add_command(label='Created By Abhimanyu Sharma')
 about.add_command(label="Get Source Code",command=open_web)
@@ -225,7 +237,7 @@ def save_file(event=None):
             url=filedialog.asksaveasfile(mode='w',defaultextension='.txt',filetypes=(('Text Files','*.txt'),('All Files','*.*')))
             content2=text_editor.get(1.0,tk.END)
             url.write(content2)
-            url.close
+            url.close()
     except:
         return
 #save as 
@@ -234,7 +246,7 @@ def save_as(event=None):
     try:
         content=text_editor.get(1.0,tk.END)
         url=filedialog.asksaveasfile(mode='w',defaultextension='.txt',filetypes=(('Text Files','*.txt'),('All Files','*.*')))
-        url.wrrite(content)
+        url.write(content)
         url.close()
     except:
         return
@@ -323,6 +335,7 @@ edit.add_command(label='Copy',image=copy_icon,compound=tk.LEFT,accelerator='(Ctr
 edit.add_command(label='Cut',image=cut_icon,compound=tk.LEFT,accelerator='(Ctrl+X)',command=lambda:text_editor.event_generate("<Control-X>"))
 edit.add_command(label='Paste',image=paste_icon,compound=tk.LEFT,accelerator='(Ctrl+V)',command=lambda:text_editor.event_generate("<Control-V>"))
 edit.add_command(label='Find',image=find_icon,compound=tk.LEFT,accelerator='(Ctrl+F)',command=find_func)
+edit.add_command(label="Get Time And Date",image=timeImage,compound=tk.LEFT,accelerator="(F5)",command=getDateTime)
 edit.add_command(label='Clear All',image=clear_all_icon,compound=tk.LEFT,accelerator='(Ctrl+Alt+X)',command=lambda:text_editor.delete(1.0,tk.END))
 #view commands
 show_statusbar=tk.BooleanVar()
@@ -361,6 +374,7 @@ count=0
 for i in color_dict:
     color_theme.add_radiobutton(label=i,image=color_icons[count],variable=theme_choice,compound=tk.LEFT,command=change_theme)
     count+=1
+main_application.protocol("WM_DELETE_WINDOW",exit_func)
 # -------------------&&&&&&&end main menu functionality&&&&&&&&&&-------------
 main_application.config(menu=main_menu)
 ##bind shortcut keys
@@ -370,5 +384,5 @@ main_application.bind("<Control-s>",save_file)
 main_application.bind("<Control-Alt-S>",new_file)
 main_application.bind("<Alt-F4>",exit_func)
 main_application.bind("<Control-f>",find_func)
+main_application.bind("<F5>",getDateTime)
 main_application.mainloop()
-
