@@ -331,9 +331,9 @@ def find_func(event=None):
     ##mainloop
     find_d.mainloop()
 #edit commands
-edit.add_command(label='Copy',image=copy_icon,compound=tk.LEFT,accelerator='(Ctrl+C)',command=lambda:text_editor.event_generate("<Control-C>"))
-edit.add_command(label='Cut',image=cut_icon,compound=tk.LEFT,accelerator='(Ctrl+X)',command=lambda:text_editor.event_generate("<Control-X>"))
-edit.add_command(label='Paste',image=paste_icon,compound=tk.LEFT,accelerator='(Ctrl+V)',command=lambda:text_editor.event_generate("<Control-V>"))
+edit.add_command(label='Copy',image=copy_icon,compound=tk.LEFT,accelerator='(Ctrl+C)',command=lambda:text_editor.event_generate("<Control-c>"))
+edit.add_command(label='Cut',image=cut_icon,compound=tk.LEFT,accelerator='(Ctrl+X)',command=lambda:text_editor.event_generate("<Control-x>"))
+edit.add_command(label='Paste',image=paste_icon,compound=tk.LEFT,accelerator='(Ctrl+V)',command=lambda:text_editor.event_generate("<Control-v>"))
 edit.add_command(label='Find',image=find_icon,compound=tk.LEFT,accelerator='(Ctrl+F)',command=find_func)
 edit.add_command(label="Get Time And Date",image=timeImage,compound=tk.LEFT,accelerator="(F5)",command=getDateTime)
 edit.add_command(label='Clear All',image=clear_all_icon,compound=tk.LEFT,accelerator='(Ctrl+Alt+X)',command=lambda:text_editor.delete(1.0,tk.END))
