@@ -16,6 +16,7 @@ cx_Freeze.setup(
     name = "PastePad Text Editor",
     options = {"build_exe": {"packages":["tkinter","os","webbrowser","datetime"], "include_files":["icon.ico",'tcl86t.dll','tk86t.dll', 'icons2']}},
     version = "0.08",
+    author="Abhimanyu Sharma",
     description = "PastePad Text Editor",
     executables = executables
     )
