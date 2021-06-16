@@ -1,4 +1,3 @@
-#PastePad Is Created By Abhimanyu Sharma A.K.A N1nja0p
 import tkinter as tk
 from tkinter import ttk
 from tkinter import font
